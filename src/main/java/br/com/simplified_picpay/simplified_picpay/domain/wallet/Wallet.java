@@ -29,6 +29,7 @@ public class Wallet {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(precision = 10, scale = 2)
     private BigDecimal balance;
 
     @Enumerated(EnumType.STRING)
@@ -37,4 +38,12 @@ public class Wallet {
     @CreatedDate
     @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
+
+    public void withdraw(BigDecimal amount) {
+        this.balance = this.balance.subtract(amount);
+    }
+
+    public void deposit(BigDecimal amount) {
+        this.balance = this.balance.add(amount);
+    }
 }

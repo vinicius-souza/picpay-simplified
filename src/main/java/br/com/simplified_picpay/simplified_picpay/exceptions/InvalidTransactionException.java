@@ -1,7 +1,9 @@
 package br.com.simplified_picpay.simplified_picpay.exceptions;
 
-public class InvalidTransactionException extends RuntimeException{
+import org.springframework.http.HttpStatus;
+
+public class InvalidTransactionException extends BusinessException {
     public InvalidTransactionException(String message) {
-        super(message);
+        super(message, HttpStatus.BAD_REQUEST);
     }
 }
